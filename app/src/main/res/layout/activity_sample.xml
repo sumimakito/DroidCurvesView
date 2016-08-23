@@ -18,9 +18,13 @@
         android:layout_height="300dp"
         cv:cv_backgroundColor="#000"
         cv:cv_ctrlPointCount="quintuple"
-        cv:cv_hintLineColor="#50ffffff"
+        cv:cv_curveColor="#fff"
         cv:cv_curveWeight="2dp"
+        cv:cv_drawText="true"
+        cv:cv_hintLineColor="#50ffffff"
         cv:cv_hintLineWeight="1dp"
-        cv:cv_curveColor="#fff"/>
+        cv:cv_textSize="10sp"
+        cv:cv_textTypeface="bold"
+        cv:cv_textColor="#ffffff"/>
 
 </LinearLayout>

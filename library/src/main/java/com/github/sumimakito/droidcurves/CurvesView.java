@@ -11,7 +11,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
@@ -20,32 +19,31 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
-import android.view.SurfaceView;
 import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CurvesView extends View {
-
     private final String TAG = "CurvesView";
 
-    private int cvBackgroundColor = Color.BLACK;
-    private int cvCurveColor = Color.WHITE, cvHintLineColor = Color.argb(50, 255, 255, 255);
-    private int cvCtrlPointCount = 5;
-    private float cvCurveWeight = 3;
-    private float cvHintLineWeight = 1;
+    private int cvBackgroundColor, cvCurveColor, cvHintLineColor, cvTextColor;
+
+    private int cvCtrlPointCount, cvTextSize;
+    private float cvCurveWeight, cvHintLineWeight;
     private boolean cvDrawText;
+    private int cvTextTypeface;
 
     private float columnMaskWidth = 0, columnMaskHeight = 0;
     private int pointColumnAreaIndex = -1;
     private float startPointY = -1;
 
-    private ArrayList<PointF> pointsArray;
+    private ArrayList<PointF> knotsArray;
     private ArrayList<Float> valuesArray;
 
     private Paint pCurve, pMask, pLine, pText;
     private int viewWidth, viewHeight;
+    private float textLabelGlobalY;
 
     public CurvesView(Context context) {
         this(context, null, 0);
@@ -78,20 +76,22 @@ public class CurvesView extends View {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        if (pointsArray.size() < 3) return;
+        if (knotsArray.size() < 3) return;
         canvas.drawColor(cvBackgroundColor);
         canvas.drawLine(0, columnMaskHeight, viewWidth, 0, pLine);
-        drawSplineCubicHermite(pointsArray, 0.05f, canvas, pCurve);
+        drawSplineCubicHermite(knotsArray, 0.05f, canvas, pCurve);
 
-        float tY = columnMaskHeight - (pText.getTextSize() * 0.8f);
-        for (int i = 0; i < cvCtrlPointCount; i++) {
-            canvas.drawText(Math.round(valuesArray.get(i) * 100) + "%", (i + 0.5f) * columnMaskWidth, tY, pText);
+        if (cvDrawText) {
+            for (int i = 0; i < cvCtrlPointCount; i++) {
+                canvas.drawText(Math.round(valuesArray.get(i) * 100) + "%", (i + 0.5f) * columnMaskWidth, textLabelGlobalY, pText);
+            }
         }
 
-        if (pointColumnAreaIndex < 0) return;
-        canvas.drawRect(pointColumnAreaIndex * columnMaskWidth, 0,
-                        (pointColumnAreaIndex + 1) * columnMaskWidth, columnMaskHeight,
-                        pMask);
+        if (pointColumnAreaIndex >= 0) {
+            canvas.drawRect(pointColumnAreaIndex * columnMaskWidth, 0,
+                            (pointColumnAreaIndex + 1) * columnMaskWidth, columnMaskHeight,
+                            pMask);
+        }
     }
 
     private void applyStyle(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -99,21 +99,23 @@ public class CurvesView extends View {
         cvBackgroundColor = a.getColor(R.styleable.CurvesView_cv_backgroundColor, Color.BLACK);
         cvCurveColor = a.getColor(R.styleable.CurvesView_cv_curveColor, Color.WHITE);
         cvHintLineColor = a.getColor(R.styleable.CurvesView_cv_hintLineColor, Color.argb(50, 255, 255, 255));
-        cvDrawText = a.getBoolean(R.styleable.CurvesView_cv_drawText, false);
+        cvTextColor = a.getColor(R.styleable.CurvesView_cv_textColor, Color.WHITE);
+        cvDrawText = a.getBoolean(R.styleable.CurvesView_cv_drawText, true);
         cvCtrlPointCount = a.getInt(R.styleable.CurvesView_cv_ctrlPointCount, 5);
         cvCurveWeight = a.getDimensionPixelSize(R.styleable.CurvesView_cv_curveWeight,
                                                 Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 3, getResources().getDisplayMetrics())));
         cvHintLineWeight = a.getDimensionPixelSize(R.styleable.CurvesView_cv_hintLineWeight,
                                                    Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, getResources().getDisplayMetrics())));
+        cvTextSize = a.getDimensionPixelSize(R.styleable.CurvesView_cv_textSize,
+                                             Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 11, getResources().getDisplayMetrics())));
+        cvTextTypeface = a.getInt(R.styleable.CurvesView_cv_textTypeface, 0);
         a.recycle();
 
         pText = new Paint();
-        pText.setColor(cvCurveColor);
+        pText.setColor(cvTextColor);
         pText.setAntiAlias(true);
-        pText.setTypeface(Typeface.MONOSPACE);
-        pText.setTextSize(
-                TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 11, getResources().getDisplayMetrics())
-        );
+        pText.setTypeface(cvTextTypeface == 0 ? Typeface.MONOSPACE : cvTextTypeface == 1 ? Typeface.DEFAULT : Typeface.DEFAULT_BOLD);
+        pText.setTextSize(cvTextSize);
         pText.setTextAlign(Paint.Align.CENTER);
 
         pCurve = new Paint();
@@ -125,7 +127,6 @@ public class CurvesView extends View {
         pCurve.setStyle(Paint.Style.STROKE);
         pCurve.setStrokeJoin(Paint.Join.ROUND);
         pCurve.setStrokeCap(Paint.Cap.ROUND);
-        //pCurve.setPathEffect(new CornerPathEffect(5));
 
         pLine = new Paint();
         pLine.setColor(cvHintLineColor);
@@ -139,7 +140,7 @@ public class CurvesView extends View {
     }
 
     private void initArrays() {
-        pointsArray = new ArrayList<>();
+        knotsArray = new ArrayList<>();
         valuesArray = new ArrayList<>();
         float valueInterval = 1.0f / (cvCtrlPointCount - 1);
         for (int i = 0; i < cvCtrlPointCount; i++) {
@@ -152,7 +153,7 @@ public class CurvesView extends View {
         viewHeight = height;
         columnMaskWidth = (float) width / (float) cvCtrlPointCount;
         columnMaskHeight = height;
-        pointsArray.clear();
+        knotsArray.clear();
 
         // initial curve
         double hypotenuse = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2));
@@ -162,14 +163,15 @@ public class CurvesView extends View {
         double pOffsetY = hypotenuse / ((double) (cvCtrlPointCount - 1)) * sin;
 
         for (int i = 0; i < cvCtrlPointCount; i++) {
-            pointsArray.add(
+            knotsArray.add(
                     new PointF(
                             Math.round(pOffsetX * i),
                             columnMaskHeight * (1.0f - valuesArray.get(i))
                     )
             );
         }
-        //Math.round(pOffsetY * (cvCtrlPointCount - i - 1))
+
+        textLabelGlobalY = columnMaskHeight - (pText.getTextSize() * 0.8f);
     }
 
     @Override
@@ -189,8 +191,7 @@ public class CurvesView extends View {
                 else if (targetValue > 1.0f)
                     targetValue = 1.0f;
                 valuesArray.set(pointColumnAreaIndex, targetValue);
-
-                pointsArray.get(pointColumnAreaIndex).y = columnMaskHeight * (1.0f - targetValue); //+= deltaY * 0.1;
+                knotsArray.get(pointColumnAreaIndex).y = columnMaskHeight * (1.0f - targetValue); //+= deltaY * 0.1;
 
                 invalidate();
                 break;

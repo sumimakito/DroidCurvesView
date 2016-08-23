@@ -12,11 +12,17 @@
         <attr name="cv_textColor" format="color"/>
         <attr name="cv_curveWeight" format="dimension"/>
         <attr name="cv_hintLineWeight" format="dimension"/>
+        <attr name="cv_textSize" format="dimension"/>
         <attr name="cv_hintLineColor" format="color"/>
         <attr name="cv_drawText" format="boolean"/>
         <attr name="cv_ctrlPointCount" format="enum">
             <enum name="triple" value="3"/>
             <enum name="quintuple" value="5"/>
+        </attr>
+        <attr name="cv_textTypeface" format="enum">
+            <enum name="monospace" value="0"/>
+            <enum name="normal" value="1"/>
+            <enum name="bold" value="2"/>
         </attr>
     </declare-styleable>
 </resources>
