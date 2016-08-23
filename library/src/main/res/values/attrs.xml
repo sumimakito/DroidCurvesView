@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~  Copyright (c) 2014-2016 Sumi Makito
+  ~  https://github.com/sumimakito
+  ~  Please read the license before using or modifying.
+  -->
+
+<resources>
+    <declare-styleable name="CurvesView">
+        <attr name="cv_curveColor" format="color"/>
+        <attr name="cv_backgroundColor" format="color"/>
+        <attr name="cv_textColor" format="color"/>
+        <attr name="cv_curveWeight" format="dimension"/>
+        <attr name="cv_hintLineWeight" format="dimension"/>
+        <attr name="cv_hintLineColor" format="color"/>
+        <attr name="cv_drawText" format="boolean"/>
+        <attr name="cv_ctrlPointCount" format="enum">
+            <enum name="triple" value="3"/>
+            <enum name="quintuple" value="5"/>
+        </attr>
+    </declare-styleable>
+</resources>
