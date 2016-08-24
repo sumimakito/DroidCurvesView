@@ -6,8 +6,6 @@ A custom view for Android inspired by Curves Tool in Photoshop.
 
 一个自定义View，灵感来自Photoshop中的曲线调整工具。
 
-> Still in developing. 尚在开发中
-
 ### Preview 预览
 
 <img src="art/preview_animated.gif">
@@ -80,6 +78,34 @@ CurvesView就如同你之前所用过的View一样简单，你只需要把它加
 | cv_drawTouchEffect 	| Draw touch effect if set to true / 设为True时显示触摸反馈              | true    |
 | cv_ctrlPointCount 	| The number of control knots / 控制点个数 (enum:triple=3,quintuple=5) | quintuple  |
 | cv_textTypeface 	    | The typeface of the text label / 文字标签的字体 (enum:monospace,normal,bold) | normal  |
+
+### It can also... 它还可以...
+
+Automatically process user's touch event with the view and get the new value of the changed control knot.
+
+自动处理用户与View的交互事件并取得发生变化的控制点的最新值
+
+```java
+curvesView.setCurvesChangedListener(new CurvesView.CurvesChangedListener() {
+            @Override
+            public void onCallback(int controlKnotID, float newValue) {
+                // newValue is in range float[0,1]
+                Log.d("CurvesView", "Control Knot ("+controlKnotID+") changed to "+newValue);
+            }
+        });
+```
+
+Change the style of CurvesView in Java code.
+
+在Java代码中改变CurvesView的样式
+
+
+```java
+curvesView.setCvBackgroundColor(Color.RED);
+curvesView.setCvCurveColor(Color.GREEN);
+curvesView.setCvCurveWeight(5f);
+...
+```
 
 ### Donate &amp; Support 捐赠与支持
 
