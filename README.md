@@ -62,6 +62,10 @@ CurvesView就如同你之前所用过的View一样简单，你只需要把它加
         cv:cv_touchEffectColor="#3066ccff"/>
 ```
 
+A sample module is contained in this repository, you can clone and try out on your Android devices.
+
+一个简单的演示已包含在项目中，你可以Clone后在自己的手机上运行试用。
+
 ### Attributes list 属性列表
 
 | Attr. name            |                Explain                                              |    Default    |
