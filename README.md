@@ -9,6 +9,8 @@ A custom view for Android inspired by Curves Tool in Photoshop.
 
 <img src="https://raw.githubusercontent.com/SumiMakito/DroidCurvesView/0ee6238afaa9dea7134b87730473e356c7f57062/art/preview.png" width="400">
 
+<iframe width="420" height="315" src="https://www.youtube.com/embed/rDlI6QYFNdo" frameborder="0" allowfullscreen></iframe>
+
 ### Donate &amp; Support 捐赠与支持
 
 Makito是一个自由开发者，同时也是一名在校大学生。
