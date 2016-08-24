@@ -1,10 +1,8 @@
 # DroidCurvesView
 
-<img style="float: left;" src="art/preview.png" width="150">
+|--------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| <img style="float: left;" src="art/preview.png" width="150"> | A custom view for Android inspired by Curves Tool in Photoshop. <br>一个自定义View，灵感来自Photoshop中的曲线调整工具。 |
 
-A custom view for Android inspired by Curves Tool in Photoshop.
-
-一个自定义View，灵感来自Photoshop中的曲线调整工具。
 
 ### Preview 预览
 
