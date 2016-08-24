@@ -10,11 +10,16 @@
         <attr name="cv_curveColor" format="color"/>
         <attr name="cv_backgroundColor" format="color"/>
         <attr name="cv_textColor" format="color"/>
+        <attr name="cv_hintLineColor" format="color"/>
+        <attr name="cv_touchEffectColor" format="color"/>
+
         <attr name="cv_curveWeight" format="dimension"/>
         <attr name="cv_hintLineWeight" format="dimension"/>
         <attr name="cv_textSize" format="dimension"/>
-        <attr name="cv_hintLineColor" format="color"/>
+
         <attr name="cv_drawText" format="boolean"/>
+        <attr name="cv_drawTouchEffect" format="boolean"/>
+
         <attr name="cv_ctrlPointCount" format="enum">
             <enum name="triple" value="3"/>
             <enum name="quintuple" value="5"/>

@@ -13,18 +13,86 @@
               android:gravity="center"
               android:orientation="vertical">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="DroidCurvesView"
+        android:textColor="#fff"
+        android:textSize="30sp"/>
+
     <com.github.sumimakito.droidcurves.CurvesView
+        android:id="@+id/curvesView"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        cv:cv_backgroundColor="#000"
+        cv:cv_backgroundColor="#116622"
         cv:cv_ctrlPointCount="quintuple"
-        cv:cv_curveColor="#fff"
+        cv:cv_curveColor="#ff6600"
         cv:cv_curveWeight="2dp"
         cv:cv_drawText="true"
+        cv:cv_drawTouchEffect="true"
         cv:cv_hintLineColor="#50ffffff"
         cv:cv_hintLineWeight="1dp"
-        cv:cv_textSize="10sp"
-        cv:cv_textTypeface="bold"
-        cv:cv_textColor="#ffffff"/>
+        cv:cv_textColor="#ffffff"
+        cv:cv_textSize="12sp"
+        cv:cv_textTypeface="normal"
+        cv:cv_touchEffectColor="#3066ccff"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:stretchColumns="*">
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="--"
+                android:textColor="#fff"
+                android:textSize="13sp"/>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="--"
+                android:textColor="#fff"
+                android:textSize="13sp"/>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="--"
+                android:textColor="#fff"
+                android:textSize="13sp"/>
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="--"
+                android:textColor="#fff"
+                android:textSize="13sp"/>
+
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="--"
+                android:textColor="#fff"
+                android:textSize="13sp"/>
+
+        </TableRow>
+    </TableLayout>
 
 </LinearLayout>
