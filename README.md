@@ -10,7 +10,7 @@ A custom view for Android inspired by Curves Tool in Photoshop.
 
 <img src="art/preview_animated.gif">
 
-[Watch on YouTube 在YouTube上观看](https://youtu.be/rDlI6QYFNdo)
+<a href="https://youtu.be/rDlI6QYFNdo" target="_blank">Watch on YouTube / 在YouTube上观看</a>
 
 ### Add to your project 添加到你的项目中
 
