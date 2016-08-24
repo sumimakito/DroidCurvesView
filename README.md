@@ -65,7 +65,7 @@ CurvesView就如同你之前所用过的View一样简单，你只需要把它加
 ### Attributes list 属性列表
 
 | Attr. name            |                Explain                                              |    Default    |
-|-----------------------|:-------------------------------------------------------------------:|------------|
+|-----------------------|-------------------------------------------------------------------|------------|
 | cv_curveColor 		| The color of the curve / 曲线的颜色							          | White |
 | cv_backgroundColor 	| The color of the background / 背景的颜色   					          | Black |
 | cv_textColor 			| The color of the text label / 文字标签中字体的颜色 			          | White |
