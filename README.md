@@ -14,9 +14,11 @@ A custom view for Android inspired by Curves Tool in Photoshop.
 
 [Watch on YouTube 在YouTube上观看](https://youtu.be/rDlI6QYFNdo)
 
-### Quick start 快速上手
+### Add to your project 添加到你的项目中
 
-1. Add JitPack repository to build.gradle in project root. (在项目根目录下的build.gradle中加入以下内容)
+Add JitPack repository to build.gradle in project root.
+
+在项目根目录下的build.gradle中加入以下内容
 ```
 allprojects {
 	repositories {
@@ -26,12 +28,59 @@ allprojects {
 }
 ```
 
-2. Add the dependency to build.gradle in app root. (在应用目录下的build.gradle中加入以下依赖)
+Add the dependency to build.gradle in app root.
+
+在应用目录下的build.gradle中加入以下依赖
 ```
 dependencies {
 	compile 'com.github.sumimakito:DroidCurvesView:1.0.0'
 }
 ```
+
+### Quick start 快速上手
+
+CurvesView is as simple as the views you have used before.
+
+Just simply add it to the layout file and define the styles as you like.
+
+CurvesView就如同你之前所用过的View一样简单，你只需要把它加入到布局文件中并随心定义一下样式就好了。
+
+```xml
+<com.github.sumimakito.droidcurves.CurvesView
+        android:id="@+id/curvesView"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        cv:cv_backgroundColor="#116622"
+        cv:cv_ctrlPointCount="quintuple"
+        cv:cv_curveColor="#ff6600"
+        cv:cv_curveWeight="2dp"
+        cv:cv_drawText="true"
+        cv:cv_drawTouchEffect="true"
+        cv:cv_hintLineColor="#50ffffff"
+        cv:cv_hintLineWeight="1dp"
+        cv:cv_textColor="#ffffff"
+        cv:cv_textSize="12sp"
+        cv:cv_textTypeface="normal"
+        cv:cv_touchEffectColor="#3066ccff"/>
+```
+
+### Attributes list 属性列表
+
+| Attr. name            |                Explain                                              |    Default    |
+|-----------------------|:-------------------------------------------------------------------:|------------|
+| cv_curveColor 		| The color of the curve / 曲线的颜色							          | White |
+| cv_backgroundColor 	| The color of the background / 背景的颜色   					          | Black |
+| cv_textColor 			| The color of the text label / 文字标签中字体的颜色 			          | White |
+| cv_hintLineColor 		| The color of fixed hint line / 固定标记线的颜色			          | White(α=50) |
+| cv_touchEffectColor 	| The color of touched area / 区域触摸反馈的颜色			          | White(α=30) |
+| cv_textSize 			| The size of the text label / 文字标签中字体大小 				          | 11sp	 |
+| cv_curveWeight 		| The weight of the curve / 曲线粗细 							          | 3dp  |
+| cv_hintLineWeight 	| The weight of fixed hint line / 固定标记线的颜色 			          | 1dp  |
+| cv_drawText 			| Draw text label if set to true / 设为True时显示文字标签 		          | true    |
+| cv_drawTouchEffect 	| Draw touch effect if set to true / 设为True时显示触摸反馈              | true    |
+| cv_ctrlPointCount 	| The number of control knots / 控制点个数 (enum:triple=3,quintuple=5) | quintuple  |
+| cv_textTypeface 	    | The typeface of the text label / 文字标签的字体 (enum:monospace,normal,bold) | normal  |
+
 ### Donate &amp; Support 捐赠与支持
 
 Makito是一个自由开发者，同时也是一名在校大学生。
