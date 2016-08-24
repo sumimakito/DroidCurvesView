@@ -14,6 +14,24 @@ A custom view for Android inspired by Curves Tool in Photoshop.
 
 [Watch on YouTube 在YouTube上观看](https://youtu.be/rDlI6QYFNdo)
 
+### Quick start 快速上手
+
+1. Add JitPack repository to build.gradle in project root. (在项目根目录下的build.gradle中加入以下内容)
+```
+allprojects {
+	repositories {
+		...
+		maven { url "https://jitpack.io" }
+	}
+}
+```
+
+2. Add the dependency to build.gradle in app root. (在应用目录下的build.gradle中加入以下依赖)
+```
+dependencies {
+	compile 'com.github.sumimakito:DroidCurvesView:1.0.0'
+}
+```
 ### Donate &amp; Support 捐赠与支持
 
 Makito是一个自由开发者，同时也是一名在校大学生。
