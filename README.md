@@ -124,3 +124,25 @@ Makito是一个自由开发者，同时也是一名在校大学生。
 或使用支付宝客户端扫描下面的二维码
 
 <img src="art/aliqr.png" width="400">
+
+### Copyright &amp; License 版权信息与授权协议
+
+Copyright &copy; 2014-2016 Sumi Makito &amp; Bitcat Interactive Lab.
+
+Licensed under Apache License 2.0 License.
+
+```
+Copyright 2014-2016 Sumi Makito & Bitcat Interactive Lab.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
