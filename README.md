@@ -1,6 +1,6 @@
 # DroidCurvesView
 
-<img style="float: right;" src="art/preview.png" width="150">
+<img align="right" src="art/preview.png" width="150">
 
 A custom view for Android inspired by Curves Tool in Photoshop.
 
